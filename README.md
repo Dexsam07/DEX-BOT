@@ -1,4 +1,4 @@
-# 🤖 Zenitsu-BOT
+# 🤖 DEX-BOT
 
 <div align="center">
 
@@ -8,7 +8,7 @@
 
 <br />
 
-<img src="https://files.catbox.moe/nphv57.jpg" alt="Zenitsu-BOT" height="300">
+<img src="https://i.ibb.co/mrCC2Bct/20260326-122432.jpg" alt="Dex-BOT" height="300">
 
 <br />
 
@@ -32,7 +32,7 @@
 
 ### Step 1: Fork Repository
 <div align="center">
-  <a href="https://github.com/Xchristech2/Zenitsu-Bot/fork">
+  <a href="https://github.com/Dexsam07/Dex-Bot/fork">
     <img src="https://img.shields.io/badge/Fork-Repository-blue?style=for-the-badge" alt="Fork Repository"/>
   </a>
 </div>
@@ -64,7 +64,7 @@
 
 <div align="center">
 
-Made with ❤️ by LordGaaju | Zenitsu-BOT 
+Made with ❤️ by Dex Shyam Chaudhari | DEX-BOT 
 
 <img src="https://img.shields.io/badge/⭐_Star_this_Repository-yellow?style=for-the-badge&logo=github" />
 
@@ -74,8 +74,8 @@ Made with ❤️ by LordGaaju | Zenitsu-BOT
 
 ```bash
 # Clone repository
-git clone https://github.com/Xchristech2/Zenitsu-BOT.git
-cd Zentisu-BOT
+git clone https://github.com/Dexsam07/Dex-Bot.git
+cd Dex-Bot
 
 # Install dependencies
 npm install
