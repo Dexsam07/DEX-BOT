@@ -19,8 +19,8 @@
 
 <br />
 
-<img src="https://img.shields.io/badge/Developer-ChrisGaaju-purple?style=flat-square&logo=github" />
-<img src="https://img.shields.io/badge/Username-Xchristech2-orange?style=flat-square&logo=github" />
+<img src="https://img.shields.io/badge/Developer-DexShyamChaudhari-purple?style=flat-square&logo=github" />
+<img src="https://img.shields.io/badge/Username-Dexsam07-orange?style=flat-square&logo=github" />
 <img src="https://img.shields.io/badge/Multi_Device-Enabled-orange?style=flat-square&logo=android" />
 <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square&logo=opensourceinitiative" />
 
