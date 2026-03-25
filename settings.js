@@ -10,6 +10,6 @@ const settings = {
   'storeWriteInterval': 0x2710,
   'description': "This is a bot for managing group commands and automating tasks.",
   'version': "1.0.0",
-  'updateZipUrl': 'https://github.com/qwerghjkkl/Zenitsu-Bot/archive/refs/heads/main.zip'
+  'updateZipUrl': 'https://github.com/Dexsam07/DEX-BOT/archive/refs/heads/main.zip'
 };
 module.exports = settings;
