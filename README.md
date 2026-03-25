@@ -74,8 +74,8 @@ Made with ❤️ by Dex Shyam Chaudhari | DEX-BOT
 
 ```bash
 # Clone repository
-git clone https://github.com/Dexsam07/Dex-Bot.git
-cd Dex-Bot
+git clone https://github.com/Dexsam07/DEX-BOT.git
+cd DEX-BOT
 
 # Install dependencies
 npm install
