@@ -59,7 +59,7 @@ async function songCommand(sock, chatId, message) {
 
         // Help message if no query
         if (!searchQuery) {
-            const helpText = `🎵 *ZENITSU-BOT AUDIO DOWNLOADER* 🎵
+            const helpText = `🎵 *DEX-BOT AUDIO DOWNLOADER* 🎵
 
 🔍 *USAGE:*
 • Send YouTube URL
@@ -161,14 +161,14 @@ async function songCommand(sock, chatId, message) {
 
         // Send the audio
         const finalTitle = audioData.title || video.title || 'Audio';
-        const caption = `🎵 *ZENITSU-BOT AUDIO DOWNLOADER* 🎵\n\n` +
+        const caption = `🎵 *DEX-BOT AUDIO DOWNLOADER* 🎵\n\n` +
                        `🎶 *Title:* ${finalTitle}\n` +
                        (video.author ? `🎤 *Artist:* ${video.author.name}\n` : '') +
                        (video.timestamp ? `⏱ *Duration:* ${video.timestamp}\n` : '') +
                        `📁 *Format:* MP3\n` +
                        `⚡ *Quality:* High\n\n` +
                        `✅ *Downloaded successfully*\n\n` +
-                       `⭐ *Powered by Zenitsu-BOT*`;
+                       `⭐ *Powered by DEX-BOT*`;
 
         await sock.sendMessage(chatId, {
             audio: { url: audioData.download || audioData.dl || audioData.url },
@@ -187,7 +187,7 @@ async function songCommand(sock, chatId, message) {
                   `📁 *Format:* MP3\n` +
                   `⚡ *Quality:* High\n\n` +
                   `🎵 *Audio sent!*\n\n` +
-                  `⭐ *Zenitsu-BOT Task Complete* ⭐`,
+                  `⭐ *DEX-BOT Task Complete* ⭐`,
             edit: statusMsg.key
         });
 

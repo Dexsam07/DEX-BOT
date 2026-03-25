@@ -5,7 +5,7 @@ async function ownerCommand(sock, chatId, message) {
         // Check if bot owner is set
         if (!settings.botOwner || !settings.ownerNumber) {
             return await sock.sendMessage(chatId, {
-                text: `⚡ *ZENITSU-BOT OWNER INFO* ⚡\n\n❌ *Owner information not configured*\n\nPlease set botOwner and ownerNumber in settings.js`
+                text: `⚡ *DEX-BOT OWNER INFO* ⚡\n\n❌ *Owner information not configured*\n\nPlease set botOwner and ownerNumber in settings.js`
             }, { quoted: message });
         }
 
@@ -16,10 +16,10 @@ async function ownerCommand(sock, chatId, message) {
 
         // Update message with owner details
         await sock.sendMessage(chatId, {
-            text: `⚡ *ZENITSU-BOT OWNER INFORMATION* ⚡\n\n` +
+            text: `⚡ *DEX-BOT OWNER INFORMATION* ⚡\n\n` +
                   `👤 *Name:* ${settings.botOwner}\n` +
                   `📱 *Number:* ${settings.ownerNumber}\n` +
-                  `🌐 *Bot Name:* ${global.botname || 'Zenitsu-BOT'}\n\n` +
+                  `🌐 *Bot Name:* ${global.botname || 'DEX-BOT'}\n\n` +
                   `📤 *Saving contact card...*`,
             edit: statusMsg.key
         });
@@ -29,17 +29,17 @@ async function ownerCommand(sock, chatId, message) {
 BEGIN:VCARD
 VERSION:3.0
 FN:${settings.botOwner}
-ORG:Zenitsu-Bot;
+ORG:Dex-bot;
 TEL;type=CELL;type=VOICE;waid=${settings.ownerNumber}:${settings.ownerNumber}
-X-WA-BIZ-NAME:${global.botname || 'Zenitsu-BOT'} Owner
-NOTE:Owner of ${global.botname || 'Zenitsu-BOT'} WhatsApp Bot
+X-WA-BIZ-NAME:${global.botname || 'Dex-bot'} Owner
+NOTE:Owner of ${global.botname || 'Dex-bot'} WhatsApp Bot
 END:VCARD
 `;
 
         // Send the contact card
         await sock.sendMessage(chatId, {
             contacts: { 
-                displayName: `${settings.botOwner} (${global.botname || 'ZENITSU-BOT'} Owner)`, 
+                displayName: `${settings.botOwner} (${global.botname || 'DEX-BOT'} Owner)`, 
                 contacts: [{ vcard }] 
             }
         });
@@ -49,15 +49,15 @@ END:VCARD
             text: `✅ *CONTACT SENT SUCCESSFULLY* ✅\n\n` +
                   `👤 *Name:* ${settings.botOwner}\n` +
                   `📱 *Number:* ${settings.ownerNumber}\n` +
-                  `🌐 *Bot Name:* ${global.botname || 'Zenitsu-Bot'}\n\n` +
+                  `🌐 *Bot Name:* ${global.botname || 'Dex-Bot'}\n\n` +
                   `📞 *Contact card has been sent*\n` +
                   `💡 *Tap to save contact*\n\n` +
-                  `⭐ *Zenitsu-Bot Support* ⭐`,
+                  `⭐ *Dex-Bot Support* ⭐`,
             edit: statusMsg.key
         });
 
     } catch (error) {
-        console.error('[ZENITSU-BOT OWNER] Error:', error);
+        console.error('[Dex-Bot OWNER] Error:', error);
         
         await sock.sendMessage(chatId, {
             text: `🚫 *ERROR* 🚫\n\nFailed to send owner information.\nError: ${error.message}`

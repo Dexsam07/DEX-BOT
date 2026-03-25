@@ -9,7 +9,7 @@ async function playCommand(sock, chatId, message) {
         
         // Help message if no query
         if (!searchQuery) {
-            const helpText = `🎵 *ZENITSU-BOT PLAY DOWNLOADER* 🎵
+            const helpText = `🎵 *DEX-BOT PLAY DOWNLOADER* 🎵
 
 🔍 *USAGE:*
 • Search any song name
@@ -97,7 +97,7 @@ async function playCommand(sock, chatId, message) {
         }
 
         // Send the audio with caption
-        const caption = `🎵 *ZENITSU-BOT PLAY DOWNLOADER* 🎵\n\n` +
+        const caption = `🎵 *DEX-BOT PLAY DOWNLOADER* 🎵\n\n` +
                        `🎶 *Title:* ${title}\n` +
                        `🎤 *Artist:* ${video.author.name}\n` +
                        (video.timestamp ? `⏱ *Duration:* ${video.timestamp}\n` : '') +
@@ -105,7 +105,7 @@ async function playCommand(sock, chatId, message) {
                        `📁 *Format:* MP3\n` +
                        `⚡ *Quality:* High\n\n` +
                        `✅ *Downloaded successfully*\n\n` +
-                       `⭐ *Powered by Zenitsu-BOT*`;
+                       `⭐ *Powered by DEX-BOT*`;
 
         await sock.sendMessage(chatId, {
             audio: { url: audioUrl },
@@ -125,12 +125,12 @@ async function playCommand(sock, chatId, message) {
                   `📁 *Format:* MP3\n` +
                   `⚡ *Quality:* High\n\n` +
                   `🎵 *Audio sent!*\n\n` +
-                  `⭐ *Zenitsu-BOT Task Complete* ⭐`,
+                  `⭐ *DEX-BOT Task Complete* ⭐`,
             edit: statusMsg.key
         });
 
     } catch (error) {
-        console.error('[ZENITSU-BOT PLAY] Error:', error);
+        console.error('[DEX-BOT PLAY] Error:', error);
         
         await sock.sendMessage(chatId, { 
             text: "🚫 *ERROR* 🚫\n\nError: " + (error.message || 'Unknown error') + "\n\nPlease try again."

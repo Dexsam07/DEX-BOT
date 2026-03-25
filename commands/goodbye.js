@@ -3,7 +3,7 @@ const { isGoodByeOn } = require('../lib/index');
 async function goodbyeCommand(sock, chatId, message) {
     // Check if it's a group
     if (!chatId.endsWith('@g.us')) {
-        await sock.sendMessage(chatId, { text: '⚡ *ZENITSU-BOT*\n\nThis command can only be used in groups.' });
+        await sock.sendMessage(chatId, { text: '⚡ *DEX-BOT*\n\nThis command can only be used in groups.' });
         return;
     }
 
@@ -13,7 +13,7 @@ async function goodbyeCommand(sock, chatId, message) {
     const isAdmin = participants.participants.find(p => p.id === sender)?.admin;
 
     if (!isAdmin) {
-        await sock.sendMessage(chatId, { text: '⚡ *ZENITSU-BOT*\n\n❌ Only admins can use this command.' });
+        await sock.sendMessage(chatId, { text: '⚡ *DEX-BOT*\n\n❌ Only admins can use this command.' });
         return;
     }
 
@@ -24,11 +24,11 @@ async function goodbyeCommand(sock, chatId, message) {
     if (args[1] === 'on') {
         // Enable goodbye
         const statusMsg = await sock.sendMessage(chatId, {
-            text: "⚡ *ZENITSU-BOT*\n\n🔧 *Setting up goodbye messages...*"
+            text: "⚡ *DEX-BOT*\n\n🔧 *Setting up goodbye messages...*"
         }, { quoted: message });
 
         await sock.sendMessage(chatId, {
-            text: "⚡ *ZENITSU-BOT*\n\n✅ *Goodbye messages enabled!*\n\nWhen someone leaves the group, they will receive an automatic goodbye message.\n\n⭐ Powered by Zenitsu-BOT",
+            text: "⚡ *DEX-BOT*\n\n✅ *Goodbye messages enabled!*\n\nWhen someone leaves the group, they will receive an automatic goodbye message.\n\n⭐ Powered by DEX-BOT",
             edit: statusMsg.key
         });
 
@@ -38,11 +38,11 @@ async function goodbyeCommand(sock, chatId, message) {
     } else if (args[1] === 'off') {
         // Disable goodbye
         const statusMsg = await sock.sendMessage(chatId, {
-            text: "⚡ *ZENITSU-BOT*\n\n🔧 *Removing goodbye messages...*"
+            text: "⚡ *DEX-BOT*\n\n🔧 *Removing goodbye messages...*"
         }, { quoted: message });
 
         await sock.sendMessage(chatId, {
-            text: "⚡ *ZENITSU-BOT*\n\n❌ *Goodbye messages disabled!*\n\nGoodbye messages will no longer be sent when someone leaves.\n\n⭐ Powered by Zenitsu-BOT",
+            text: "⚡ *DEX-BOT*\n\n❌ *Goodbye messages disabled!*\n\nGoodbye messages will no longer be sent when someone leaves.\n\n⭐ Powered by DEX-BOT",
             edit: statusMsg.key
         });
 
@@ -53,11 +53,11 @@ async function goodbyeCommand(sock, chatId, message) {
         // Show current status
         const isEnabled = await isGoodByeOn(chatId);
         const statusMsg = await sock.sendMessage(chatId, {
-            text: "⚡ *ZENITSU-BOT*\n\n🔍 *Checking goodbye status...*"
+            text: "⚡ *DEX-BOT*\n\n🔍 *Checking goodbye status...*"
         }, { quoted: message });
 
         await sock.sendMessage(chatId, {
-            text: `⚡ *ZENITSU-BOT*\n\n📊 *Goodbye System*\n\nStatus: ${isEnabled ? '✅ ENABLED' : '❌ DISABLED'}\n\nUsage:\n• .goodbye on - Enable\n• .goodbye off - Disable\n\n⭐ Powered by Zenitsu-BOT`,
+            text: `⚡ *DEX-BOT*\n\n📊 *Goodbye System*\n\nStatus: ${isEnabled ? '✅ ENABLED' : '❌ DISABLED'}\n\nUsage:\n• .goodbye on - Enable\n• .goodbye off - Disable\n\n⭐ Powered by DEX-BOT`,
             edit: statusMsg.key
         });
     }
@@ -109,7 +109,7 @@ async function handleLeaveEvent(sock, id, participants) {
                 
                 // Send goodbye message
                 await sock.sendMessage(id, {
-                    text: `⚡ *ZENITSU-BOT GOODBYE*\n\n${randomMessage}\n\n⭐ Powered by Benzo-MD`,
+                    text: `⚡ *DEX-BOT GOODBYE*\n\n${randomMessage}\n\n⭐ Powered by Dex Shyam Chaudhari`,
                     mentions: [participant]
                 });
                 
@@ -118,7 +118,7 @@ async function handleLeaveEvent(sock, id, participants) {
                 // Simple fallback
                 const user = participant.split('@')[0];
                 await sock.sendMessage(id, {
-                    text: `⚡ *ZENITSU-BOT*\n\n👋 Goodbye *@${user}*\n\n⭐ Powered by Zenitsu-BOT`,
+                    text: `⚡ *DEX-BOT*\n\n👋 Goodbye *@${user}*\n\n⭐ Powered by DEX-BOT`,
                     mentions: [participant]
                 });
             }

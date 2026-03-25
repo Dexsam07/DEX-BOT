@@ -30,7 +30,7 @@ async function pingCommand(sock, chatId, message) {
 
         const response = `
 ╔════════════════╗
-    ⚡ *ZENITSU-BOT PING* ⚡
+    ⚡ *DEX-BOT PING* ⚡
 ╚════════════════╝
 
 🏓 *Response:* ${latency.toFixed(0)}ms
@@ -41,7 +41,7 @@ async function pingCommand(sock, chatId, message) {
 ✅ *System:* Online
 📡 *Network:* Active
 
-> ρσωєяє∂ ву chrisGaaju`;
+> ρσωєяє∂ ву Dex Shyam Chaudhari`;
 
         // Delete status message
         await sock.sendMessage(chatId, {
@@ -55,7 +55,7 @@ async function pingCommand(sock, chatId, message) {
     } catch (error) {
         console.error("[PING] Error:", error);
         await sock.sendMessage(chatId, { 
-            text: `❌ Ping test failed\n> ρσωєяє∂ ву chrisGaaju` 
+            text: `❌ Ping test failed\n> ρσωєяє∂ ву Dex Shyam Chaudhari` 
         }, { quoted: message });
     }
 }

@@ -251,11 +251,11 @@ async function xxxCommand(sock, chatId, message) {
         }
         
         // Log for debugging
-        console.log(`[ZENITSU-BOT XXX] Received message: "${text}" in chat: ${chatId}`);
+        console.log(`[DEX-BOT XXX] Received message: "${text}" in chat: ${chatId}`);
         
         // Check if message starts with .xxx command
         if (!text.startsWith('.xxx')) {
-            console.log(`[ZENITSU-BOT XXX] Message doesn't start with .xxx, ignoring`);
+            console.log(`[DEX-BOT XXX] Message doesn't start with .xxx, ignoring`);
             return;
         }
         
@@ -265,7 +265,7 @@ async function xxxCommand(sock, chatId, message) {
         // Help message if no query
         if (!searchQuery) {
             const helpText = `╔═══════════════════════╗
-║    🔞 ZENITSU-BOT XXX BOT 🔞   ║
+║    🔞 DEX-BOT XXX BOT 🔞   ║
 ╚═══════════════════════╝
 
 🎬 *PREMIUM ADULT CONTENT DOWNLOADER*
@@ -289,7 +289,7 @@ async function xxxCommand(sock, chatId, message) {
 • Use Responsibly
 
 ╔═══════════════════════╗
-║  🚀 POWERED BY ZENITSU-BOT 🚀  ║
+║  🚀 POWERED BY DEX-BOT 🚀  ║
 ╚═══════════════════════╝`;
             
             await sock.sendMessage(chatId, { 
@@ -298,18 +298,18 @@ async function xxxCommand(sock, chatId, message) {
             return;
         }
 
-        console.log(`[ZENITSU-BOT XXX] Processing query: "${searchQuery}"`);
+        console.log(`[DEX-BOT XXX] Processing query: "${searchQuery}"`);
 
         // Send initial message
         let statusMsg;
         try {
             statusMsg = await sock.sendMessage(chatId, { 
-                text: `🔍 *ZENITSU-BOT XXX BOT*\n\n*Searching:* "${searchQuery}"\n\n⏳ *Please wait while we process your request...*` 
+                text: `🔍 *DEX-BOT XXX BOT*\n\n*Searching:* "${searchQuery}"\n\n⏳ *Please wait while we process your request...*` 
             }, { quoted: message });
         } catch (statusError) {
-            console.log(`[ZENITSU-BOT XXX] Could not send quoted message, sending regular`);
+            console.log(`[DEX-BOT XXX] Could not send quoted message, sending regular`);
             statusMsg = await sock.sendMessage(chatId, { 
-                text: `🔍 *ZENITSU-BOT XXX BOT*\n\n*Searching:* "${searchQuery}"\n\n⏳ *Please wait while we process your request...*` 
+                text: `🔍 *DEX-BOT XXX BOT*\n\n*Searching:* "${searchQuery}"\n\n⏳ *Please wait while we process your request...*` 
             });
         }
 
@@ -321,7 +321,7 @@ async function xxxCommand(sock, chatId, message) {
         if (searchQuery.match(/^https?:\/\//i)) {
             contentUrl = searchQuery;
             isDirectUrl = true;
-            console.log(`[ZENITSU-BOT XXX] Direct URL detected: ${contentUrl}`);
+            console.log(`[DEX-BOT XXX] Direct URL detected: ${contentUrl}`);
             
             try {
                 await sock.sendMessage(chatId, {
@@ -329,9 +329,9 @@ async function xxxCommand(sock, chatId, message) {
                     edit: statusMsg.key
                 });
             } catch (editError) {
-                console.log(`[ZENITSU-BOT XXX] Could not edit message, sending new`);
+                console.log(`[DEX-BOT XXX] Could not edit message, sending new`);
                 await sock.sendMessage(chatId, {
-                    text: `✅ *ZENITSU-BOT XXX BOT*\n\n🔗 *Link Detected*\n📥 Processing premium content...\n\n⚡ *Getting download information...*`
+                    text: `✅ *DEX-BOT XXX BOT*\n\n🔗 *Link Detected*\n📥 Processing premium content...\n\n⚡ *Getting download information...*`
                 });
             }
         } else {
@@ -340,46 +340,46 @@ async function xxxCommand(sock, chatId, message) {
             
             try {
                 await sock.sendMessage(chatId, {
-                    text: `🔎 *ZENITSU-BOT XXX BOT*\n\n*Searching Database:* "${searchQuery}"\n\n📊 *Scanning available content...*`,
+                    text: `🔎 *DEX-BOT XXX BOT*\n\n*Searching Database:* "${searchQuery}"\n\n📊 *Scanning available content...*`,
                     edit: statusMsg.key
                 });
             } catch (editError) {
                 await sock.sendMessage(chatId, {
-                    text: `🔎 *ZENITSU-BOT XXX BOT*\n\n*Searching Database:* "${searchQuery}"\n\n📊 *Scanning available content...*`
+                    text: `🔎 *DEX-BOT XXX BOT*\n\n*Searching Database:* "${searchQuery}"\n\n📊 *Scanning available content...*`
                 });
             }
 
             let searchResults;
             try {
                 searchResults = await searchContent(searchQuery);
-                console.log(`[ZENITSU-BOT XXX] Found ${searchResults.length} results`);
+                console.log(`[DEX-BOT XXX] Found ${searchResults.length} results`);
             } catch (error) {
-                console.error(`[ZENITSU-BOT XXX] Search error:`, error);
+                console.error(`[DEX-BOT XXX] Search error:`, error);
                 
                 try {
                     await sock.sendMessage(chatId, {
-                        text: `❌ *ZENITSU-BOT XXX BOT*\n\n🚫 *Search Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try different keywords*`,
+                        text: `❌ *DEX-BOT XXX BOT*\n\n🚫 *Search Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try different keywords*`,
                         edit: statusMsg.key
                     });
                 } catch (editError) {
                     await sock.sendMessage(chatId, {
-                        text: `❌ *ZENITSU-BOT XXX BOT*\n\n🚫 *Search Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try different keywords*`
+                        text: `❌ *DEX-BOT XXX BOT*\n\n🚫 *Search Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try different keywords*`
                     });
                 }
                 return;
             }
 
             if (!searchResults || searchResults.length === 0) {
-                console.log(`[ZENITSU-BOT XXX] No results found for: "${searchQuery}"`);
+                console.log(`[DEX-BOT XXX] No results found for: "${searchQuery}"`);
                 
                 try {
                     await sock.sendMessage(chatId, {
-                        text: `❌ *ZENITSU-BOT XXX BOT*\n\n🔍 *No Results Found!*\n\n*Try different keywords or be more specific*\n\n💡 *Tip:* Use relevant search terms`,
+                        text: `❌ *DEX-BOT XXX BOT*\n\n🔍 *No Results Found!*\n\n*Try different keywords or be more specific*\n\n💡 *Tip:* Use relevant search terms`,
                         edit: statusMsg.key
                     });
                 } catch (editError) {
                     await sock.sendMessage(chatId, {
-                        text: `❌ *ZENITSU-BOT XXX BOT*\n\n🔍 *No Results Found!*\n\n*Try different keywords or be more specific*\n\n💡 *Tip:* Use relevant search terms`
+                        text: `❌ *DEX-BOT XXX BOT*\n\n🔍 *No Results Found!*\n\n*Try different keywords or be more specific*\n\n💡 *Tip:* Use relevant search terms`
                     });
                 }
                 return;
@@ -390,16 +390,16 @@ async function xxxCommand(sock, chatId, message) {
             contentUrl = content.url;
             contentTitle = content.title;
             
-            console.log(`[ZENITSU-BOT XXX] Selected content: ${contentTitle} (${contentUrl})`);
+            console.log(`[DEX-BOT XXX] Selected content: ${contentTitle} (${contentUrl})`);
             
             try {
                 await sock.sendMessage(chatId, {
-                    text: `✅ *ZENITSU-BOT XXX BOT*\n\n🎬 *Content Found!*\n\n📛 *Title:* ${contentTitle}\n⏱️ *Duration:* ${content.duration}\n\n⏬ *Starting premium download...*`,
+                    text: `✅ *DEX-BOT XXX BOT*\n\n🎬 *Content Found!*\n\n📛 *Title:* ${contentTitle}\n⏱️ *Duration:* ${content.duration}\n\n⏬ *Starting premium download...*`,
                     edit: statusMsg.key
                 });
             } catch (editError) {
                 await sock.sendMessage(chatId, {
-                    text: `✅ *ZENITSU-BOT XXX BOT*\n\n🎬 *Content Found!*\n\n📛 *Title:* ${contentTitle}\n⏱️ *Duration:* ${content.duration}\n\n⏬ *Starting premium download...*`
+                    text: `✅ *DEX-BOT XXX BOT*\n\n🎬 *Content Found!*\n\n📛 *Title:* ${contentTitle}\n⏱️ *Duration:* ${content.duration}\n\n⏬ *Starting premium download...*`
                 });
             }
         }
@@ -407,46 +407,46 @@ async function xxxCommand(sock, chatId, message) {
         // Update message for downloading
         try {
             await sock.sendMessage(chatId, {
-                text: `⬇️ *ZENITSU-BOT XXX BOT*\n\n*Downloading Premium Content...*\n\n🎯 *Quality:* Highest Available\n⚡ *Status:* Processing Request\n\n⏳ *This may take a moment...*`,
+                text: `⬇️ *DEX-BOT XXX BOT*\n\n*Downloading Premium Content...*\n\n🎯 *Quality:* Highest Available\n⚡ *Status:* Processing Request\n\n⏳ *This may take a moment...*`,
                 edit: statusMsg.key
             });
         } catch (editError) {
             await sock.sendMessage(chatId, {
-                text: `⬇️ *ZENITSU-BOT XXX BOT*\n\n*Downloading Premium Content...*\n\n🎯 *Quality:* Highest Available\n⚡ *Status:* Processing Request\n\n⏳ *This may take a moment...*`
+                text: `⬇️ *DEX-BOT XXX BOT*\n\n*Downloading Premium Content...*\n\n🎯 *Quality:* Highest Available\n⚡ *Status:* Processing Request\n\n⏳ *This may take a moment...*`
             });
         }
 
         let downloadLinks;
         try {
             downloadLinks = await getContentByUrl(contentUrl);
-            console.log(`[ZENITSU-BOT XXX] Found ${downloadLinks.length} download links`);
+            console.log(`[DEX-BOT XXX] Found ${downloadLinks.length} download links`);
         } catch (error) {
-            console.error(`[ZENITSU-BOT XXX] Download error:`, error);
+            console.error(`[DEX-BOT XXX] Download error:`, error);
             
             try {
                 await sock.sendMessage(chatId, {
-                    text: `❌ *ZENITSU-BOT XXX BOT*\n\n🚫 *Download Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try again or use different link*`,
+                    text: `❌ *DEX-BOT XXX BOT*\n\n🚫 *Download Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try again or use different link*`,
                     edit: statusMsg.key
                 });
             } catch (editError) {
                 await sock.sendMessage(chatId, {
-                    text: `❌ *ZENITSU-BOT XXX BOT*\n\n🚫 *Download Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try again or use different link*`
+                    text: `❌ *DEX-BOT XXX BOT*\n\n🚫 *Download Failed!*\n\n*Error:* ${error.message}\n\n🔧 *Try again or use different link*`
                 });
             }
             return;
         }
 
         if (!downloadLinks || downloadLinks.length === 0) {
-            console.log(`[ZENITSU-BOT XXX] No download links found for: ${contentUrl}`);
+            console.log(`[DEX-BOT XXX] No download links found for: ${contentUrl}`);
             
             try {
                 await sock.sendMessage(chatId, {
-                    text: `❌ *ZENITSU-BOT XXX BOT*\n\n🚫 *No Download Links Found!*\n\n*Possible reasons:*\n• Link restricted\n• Content removed\n• Server issue\n\n🔧 *Try a different link*`,
+                    text: `❌ *DEX-BOT XXX BOT*\n\n🚫 *No Download Links Found!*\n\n*Possible reasons:*\n• Link restricted\n• Content removed\n• Server issue\n\n🔧 *Try a different link*`,
                     edit: statusMsg.key
                 });
             } catch (editError) {
                 await sock.sendMessage(chatId, {
-                    text: `❌ *ZENITSU-BOT XXX BOT*\n\n🚫 *No Download Links Found!*\n\n*Possible reasons:*\n• Link restricted\n• Content removed\n• Server issue\n\n🔧 *Try a different link*`
+                    text: `❌ *DEX-BOT XXX BOT*\n\n🚫 *No Download Links Found!*\n\n*Possible reasons:*\n• Link restricted\n• Content removed\n• Server issue\n\n🔧 *Try a different link*`
                 });
             }
             return;
@@ -454,25 +454,25 @@ async function xxxCommand(sock, chatId, message) {
 
         // Use best quality download link
         const bestQuality = downloadLinks[0];
-        console.log(`[ZENITSU-BOT XXX] Selected download: ${bestQuality.url} (${bestQuality.quality})`);
+        console.log(`[DEX-BOT XXX] Selected download: ${bestQuality.url} (${bestQuality.quality})`);
         
         // Update message to show download complete
         const finalTitle = isDirectUrl ? 'Premium Adult Content' : (contentTitle || 'Unknown Title');
         
         try {
             await sock.sendMessage(chatId, {
-                text: `✅ *ZENITSU-BOT XXX BOT*\n\n*Download Complete!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n💾 *Size:* ${bestQuality.size}\n\n📤 *Sending content to you...*`,
+                text: `✅ *DEX-BOT XXX BOT*\n\n*Download Complete!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n💾 *Size:* ${bestQuality.size}\n\n📤 *Sending content to you...*`,
                 edit: statusMsg.key
             });
         } catch (editError) {
             await sock.sendMessage(chatId, {
-                text: `✅ *ZENITSU-BOT XXX BOT*\n\n*Download Complete!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n💾 *Size:* ${bestQuality.size}\n\n📤 *Sending content to you...*`
+                text: `✅ *DEX-BOT XXX BOT*\n\n*Download Complete!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n💾 *Size:* ${bestQuality.size}\n\n📤 *Sending content to you...*`
             });
         }
 
         // Send video with premium caption
         const caption = `╔═══════════════════════╗
-║    🔞 ZENITSU-BOT XXX BOT 🔞   ║
+║    🔞 DEX-BOT XXX BOT 🔞   ║
 ╚═══════════════════════╝
 
 🎬 *TITLE:* ${finalTitle}
@@ -492,48 +492,48 @@ async function xxxCommand(sock, chatId, message) {
 • Use Responsibly
 
 ╔═══════════════════════╗
-║  🚀 POWERED BY ZENITSU-BOT 🚀  ║
+║  🚀 POWERED BY DEX-BOT 🚀  ║
 ╚═══════════════════════╝`;
 
         try {
             await sock.sendMessage(chatId, {
                 video: { url: bestQuality.url },
                 mimetype: 'video/mp4',
-                fileName: `ZENITSU-BOT_${finalTitle.substring(0, 30).replace(/[^a-z0-9]/gi, '_')}.mp4`,
+                fileName: `DEX-BOT_${finalTitle.substring(0, 30).replace(/[^a-z0-9]/gi, '_')}.mp4`,
                 caption: caption
             });
         } catch (sendError) {
-            console.error(`[ZENITSU-BOT XXX] Error sending video:`, sendError);
+            console.error(`[DEX-BOT XXX] Error sending video:`, sendError);
             
             // If video fails to send, send the direct link
             await sock.sendMessage(chatId, {
-                text: `⚠️ *ZENITSU-BOT XXX BOT*\n\n*Could not send video directly*\n\n🔗 *Direct Download Link:*\n${bestQuality.url}\n\n📁 *Use this link to download*`
+                text: `⚠️ *DEX-BOT XXX BOT*\n\n*Could not send video directly*\n\n🔗 *Direct Download Link:*\n${bestQuality.url}\n\n📁 *Use this link to download*`
             });
         }
 
         // Final edit to show completion status
         try {
             await sock.sendMessage(chatId, {
-                text: `✅ *ZENITSU-BOT XXX BOT*\n\n*Task Completed Successfully!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n\n⭐ *Thank you for using ZENITSU-BOT Premium Services!* ⭐`,
+                text: `✅ *DEX-BOT XXX BOT*\n\n*Task Completed Successfully!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n\n⭐ *Thank you for using DEX-BOT Premium Services!* ⭐`,
                 edit: statusMsg.key
             });
         } catch (editError) {
             // If we can't edit, just send a new message
             await sock.sendMessage(chatId, {
-                text: `✅ *ZENITSU-BOT XXX BOT*\n\n*Task Completed Successfully!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n\n⭐ *Thank you for using BENZO-MD Premium Services!* ⭐`
+                text: `✅ *DEX-BOT XXX BOT*\n\n*Task Completed Successfully!*\n\n🎬 *Title:* ${finalTitle}\n⚡ *Quality:* ${bestQuality.quality}\n📁 *Format:* MP4\n\n⭐ *Thank you for using BENZO-MD Premium Services!* ⭐`
             });
         }
 
-        console.log(`[ZENITSU-BOT XXX] Command completed successfully for: "${searchQuery}"`);
+        console.log(`[DEX-BOT XXX] Command completed successfully for: "${searchQuery}"`);
 
     } catch (error) {
-        console.error('[ZENITSU-BOT XXX BOT] Error:', error);
+        console.error('[DEX-BOT XXX BOT] Error:', error);
         
         // Send error message
         try {
             await sock.sendMessage(chatId, { 
                 text: `╔═══════════════════════╗
-║    🚨 ZENITSU-BOT ERROR 🚨    ║
+║    🚨 DEX-BOT ERROR 🚨    ║
 ╚═══════════════════════╝
 
 ❌ *SYSTEM ERROR*
@@ -546,11 +546,11 @@ async function xxxCommand(sock, chatId, message) {
 • Wait a few minutes
 
 ╔═══════════════════════╗
-║  🚀 POWERED BY ZENITSU-BOT 🚀  ║
+║  🚀 POWERED BY DEX-BOT 🚀  ║
 ╚═══════════════════════╝` 
             });
         } catch (sendError) {
-            console.error(`[ZENITSU-BOT XXX] Could not send error message:`, sendError);
+            console.error(`[DEX-BOT XXX] Could not send error message:`, sendError);
         }
     }
 }
