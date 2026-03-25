@@ -3,12 +3,12 @@
 <div align="center">
 
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Ribeye&size=50&pause=1000&color=33ff00&center=true&width=910&height=100&lines=Zenitsu-BOT;Multi+Device+Whatsapp+Bot;Coded+By+ChrisGaaju" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Ribeye&size=50&pause=1000&color=33ff00&center=true&width=910&height=100&lines=Dex-BOT;Multi+Device+Whatsapp+Bot;Coded+By+Dex Shyam Chaudhari" alt="Typing SVG" />
 </a>
 
 <br />
 
-<img src="https://i.ibb.co/mrCC2Bct/20260326-122432.jpg" alt="Dex-BOT" height="300">
+<img src="https://files.catbox.moe/f4ssep.jpg" alt="Dex-Bot" height="300">
 
 <br />
 
