@@ -21,17 +21,17 @@ async function aliveCommand(sock, chatId, message) {
         const userName = message.pushName || "User";
         const botUptime = runtime(process.uptime());
         const usedMemory = Math.round(process.memoryUsage().rss / (1024 * 1024));
-        const ownerNumber = "2348069675806";
-        const ownerName = "ZENITSU-BOT Owner";
+        const ownerNumber = "15812657405";
+        const ownerName = "DEX-BOT Owner";
         
         // Create VCF contact card
         const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:${ownerName}
-ORG:Zenitsu-BOT;
+ORG:Dex-Bot;
 TEL;type=CELL;type=VOICE;waid=${ownerNumber}:+${ownerNumber}
 X-WA-BIZ-NAME:${ownerName}
-NOTE:Owner of Zenitsu-BOT WhatsApp Bot
+NOTE:Owner of Dex-Bot WhatsApp Bot
 URL:https://whatsapp.com/channel/0029Vb6zuIiLikg7V58lXp1A
 END:VCARD`;
         
@@ -42,7 +42,7 @@ END:VCARD`;
             // Send image with caption
             const aliveMessage = `
 ╔═══════════════════╗
-        ⚡ *ZANITSU-BOT* ⚡
+        ⚡ *DEX-BOT* ⚡
 ╚═══════════════════╝
 
 👋 Hello *${userName}*
@@ -62,8 +62,8 @@ END:VCARD`;
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363406588763460@newsletter',
-                        newsletterName: 'Zenitsu-Bot',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'dex shyam tech',
                         serverMessageId: -1
                     }
                 }
@@ -81,7 +81,7 @@ END:VCARD`;
             // If no image, send text message
             const aliveMessage = `
 ╔═══════════════════╗
-        ⚡ *ZANITSU-BOT* ⚡
+        ⚡ *DEX-BOT* ⚡
 ╚═══════════════════╝
 
 👋 Hello *${userName}*
@@ -100,8 +100,8 @@ END:VCARD`;
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363406588763460@newsletter',
-                        newsletterName: 'Zenitsu-Bot',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'Dex Shyam Tech',
                         serverMessageId: -1
                     }
                 }
@@ -121,13 +121,13 @@ END:VCARD`;
         
         // Fallback to simple message if VCF fails
         await sock.sendMessage(chatId, {
-            text: `⚡ *ZANITSU-BOT*\n\n✅ Bot is active!\n📱 Owner: +2348069675806\n\nVCF failed, contact manually.`,
+            text: `⚡ *DEX-BOT*\n\n✅ Bot is active!\n📱 Owner: +15812657405\n\nVCF failed, contact manually.`,
             contextInfo: {
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363406588763460@newsletter',
-                    newsletterName: 'Zenitsu-Bot',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'Dex Shyam Tech',
                     serverMessageId: -1
                 }
             }
