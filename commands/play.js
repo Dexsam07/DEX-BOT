@@ -66,7 +66,7 @@ async function playCommand(sock, chatId, message) {
         // Fetch audio data from API
         let audioUrl, title;
         try {
-            const response = await axios.get(`https://apis-keith.vercel.app/download/dlmp3?url=${urlYt}`, {
+            const response = await axios.get(`https://api.qasimdev.dpdns.org/api/spotify/search?apiKey=qasim-dev&query=${urlYt}`, {
                 timeout: 30000
             });
             const data = response.data;
@@ -92,7 +92,7 @@ async function playCommand(sock, chatId, message) {
             });
             
             // Fallback to using direct YouTube audio
-            audioUrl = `https://convert2mp3s.com/api/widgetv2?url=${urlYt}`;
+            audioUrl = `https://api.qasimdev.dpdns.org/api/spotify/download?apiKey=qasim-dev&url=${urlYt}`;
             title = video.title;
         }
 
