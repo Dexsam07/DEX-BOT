@@ -1,141 +1,164 @@
-const yts = require('yt-search');
 const axios = require('axios');
 
-async function playCommand(sock, chatId, message) {
-    try {
-        const text = message.message?.conversation || message.message?.extendedTextMessage?.text;
-        const args = text.split(' ');
-        const searchQuery = args.slice(1).join(' ').trim();
-        
-        // Help message if no query
-        if (!searchQuery) {
-            const helpText = `🎵 *DEX-BOT PLAY DOWNLOADER* 🎵
+module.exports = {
+  command: 'play',
+  aliases: ['plays', 'music'],
+  category: 'music',
+  description: 'Search and download a song as MP3 from Spotify',
+  usage: '.play <song name>',
+  
+  async handler(sock, message, args, context = {}) {
+    const chatId = context.chatId || message.key.remoteJid;
+    const searchQuery = args.join(' ').trim();
 
-🔍 *USAGE:*
-• Search any song name
+    // Helper function to wait
+    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-📌 *EXAMPLES:*
-\`\`\`.play never gonna give you up\`\`\`
-\`\`\`.play shape of you ed sheeran\`\`\`
-
-⚡ *Features:* MP3 • High Quality • Fast Search`;
-            
-            await sock.sendMessage(chatId, { 
-                text: helpText 
-            }, { quoted: message });
-            return;
-        }
-
-        // Send initial status message
-        let statusMsg = await sock.sendMessage(chatId, { 
-            text: `🔍 *Searching for "${searchQuery}"...*\n\n⏳ Please wait...` 
-        }, { quoted: message });
-
-        // Update to searching status
-        await sock.sendMessage(chatId, {
-            text: `🔍 *Searching:*\n"${searchQuery}"\n\n🎵 Looking for best match...`,
-            edit: statusMsg.key
-        });
-
-        // Search for the song
-        const { videos } = await yts(searchQuery);
-        if (!videos || videos.length === 0) {
-            await sock.sendMessage(chatId, {
-                text: "❌ *No songs found!*\n\nTry different keywords.",
-                edit: statusMsg.key
-            });
-            return;
-        }
-
-        // Get the first video result
-        const video = videos[0];
-        const urlYt = video.url;
-
-        // Update with found song details
-        await sock.sendMessage(chatId, {
-            text: `✅ *Song found!*\n\n🎶 *Title:* ${video.title}\n🎤 *Artist:* ${video.author.name}\n⏱ *Duration:* ${video.timestamp}\n👁️ *Views:* ${video.views}\n\n⬇️ Starting download...`,
-            edit: statusMsg.key
-        });
-
-        // Update to downloading status
-        await sock.sendMessage(chatId, {
-            text: "⬇️ *Downloading audio...*\n\n🎵 *Format:* MP3\n⚡ *Quality:* High\n⏳ *Processing audio data...*",
-            edit: statusMsg.key
-        });
-
-        // Fetch audio data from API
-        let audioUrl, title;
+    // Helper function for API calls with retry logic
+    const apiCallWithRetry = async (url, maxRetries = 3, baseDelay = 2000) => {
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-            const response = await axios.get(`https://api.qasimdev.dpdns.org/api/spotify/search?apiKey=qasim-dev&query=${urlYt}`, {
-                timeout: 30000
-            });
-            const data = response.data;
-
-            if (!data || !data.status || !data.result || !data.result.downloadUrl) {
-                throw new Error('API returned invalid data');
+          // Add delay before each request to respect rate limits (1 second = 60 RPM max)
+          await wait(1000);
+          
+          const response = await axios.get(url, { 
+            timeout: 45000,
+            headers: {
+              'User-Agent': 'Mozilla/5.0'
             }
+          });
+          
+          return response;
+        } catch (error) {
+          const isRateLimited = error.response?.status === 429 || 
+                               error.code === 'ECONNABORTED' ||
+                               error.code === 'ETIMEDOUT';
+          
+          if (attempt === maxRetries) {
+            throw error;
+          }
 
-            audioUrl = data.result.downloadUrl;
-            title = data.result.title || video.title;
-
-            // Update to processing status
-            await sock.sendMessage(chatId, {
-                text: "⚡ *Processing audio...*\n\n🎵 Converting to MP3...\n🎧 Preparing final output...",
-                edit: statusMsg.key
-            });
-
-        } catch (apiError) {
-            console.error('[PLAY] API Error:', apiError.message);
-            await sock.sendMessage(chatId, {
-                text: "❌ *API Error!*\n\nFailed to fetch audio data.\nTrying alternative method...",
-                edit: statusMsg.key
-            });
-            
-            // Fallback to using direct YouTube audio
-            audioUrl = `https://api.qasimdev.dpdns.org/api/spotify/download?apiKey=qasim-dev&url=${urlYt}`;
-            title = video.title;
+          if (isRateLimited) {
+            // Exponential backoff for rate limiting
+            const delay = baseDelay * Math.pow(2, attempt - 1);
+            console.log(`Rate limited or timeout. Retrying in ${delay}ms... (Attempt ${attempt}/${maxRetries})`);
+            await wait(delay);
+          } else {
+            throw error;
+          }
         }
+      }
+    };
 
-        // Send the audio with caption
-        const caption = `🎵 *DEX-BOT PLAY DOWNLOADER* 🎵\n\n` +
-                       `🎶 *Title:* ${title}\n` +
-                       `🎤 *Artist:* ${video.author.name}\n` +
-                       (video.timestamp ? `⏱ *Duration:* ${video.timestamp}\n` : '') +
-                       (video.views ? `👁️ *Views:* ${video.views}\n` : '') +
-                       `📁 *Format:* MP3\n` +
-                       `⚡ *Quality:* High\n\n` +
-                       `✅ *Downloaded successfully*\n\n` +
-                       `⭐ *Powered by Dex Shyam Chaudhari*`;
+    try {
+      if (!searchQuery) {
+        return await sock.sendMessage(chatId, {
+          text: "*Which song do you want to play?*\nUsage: .play <song name>"
+        }, { quoted: message });
+      }
 
-        await sock.sendMessage(chatId, {
-            audio: { url: audioUrl },
-            mimetype: "audio/mpeg",
-            fileName: `${title.substring(0, 40)}.mp3`.replace(/[^a-z0-9]/gi, '_'),
-            ptt: false,
-            caption: caption
-        });
+      await sock.sendMessage(chatId, {
+        text: "🔍 *Searching for your song...*"
+      }, { quoted: message });
 
-        // Final update to show completion
-        await sock.sendMessage(chatId, {
-            text: `✅ *Downloaded successfully!*\n\n` +
-                  `🎶 *Title:* ${title}\n` +
-                  `🎤 *Artist:* ${video.author.name}\n` +
-                  (video.timestamp ? `⏱ *Duration:* ${video.timestamp}\n` : '') +
-                  (video.views ? `👁️ *Views:* ${video.views}\n` : '') +
-                  `📁 *Format:* MP3\n` +
-                  `⚡ *Quality:* High\n\n` +
-                  `🎵 *Audio sent!*\n\n` +
-                  `⭐ *DEX-BOT Task Complete* ⭐`,
-            edit: statusMsg.key
-        });
+      // Search for the song with retry logic
+      const searchUrl = `https://api.qasimdev.dpdns.org/api/spotify/search?apiKey=qasim-dev&query=${encodeURIComponent(searchQuery)}`;
+      const searchResponse = await apiCallWithRetry(searchUrl);
+      
+      if (!searchResponse.data?.success || !searchResponse.data?.data?.tracks || searchResponse.data.data.tracks.length === 0) {
+        return await sock.sendMessage(chatId, {
+          text: "❌ *No songs found!*\nTry a different search term."
+        }, { quoted: message });
+      }
+
+      const topResult = searchResponse.data.data.tracks[0];
+      const songTitle = topResult.title;
+      const spotifyUrl = topResult.url;
+      const duration = topResult.duration;
+      const popularity = topResult.popularity;
+
+      await sock.sendMessage(chatId, {
+        text: `✅ *Found!*\n\n🎵 *Song:* ${songTitle}\n⏱️ *Duration:* ${duration}\n📊 *Popularity:* ${popularity}\n\n⏳ *Downloading...*`
+      }, { quoted: message });
+
+      // Wait before making download request to respect rate limits
+      await wait(1500);
+
+      // Download the song with retry logic
+      const downloadUrl = `https://api.qasimdev.dpdns.org/api/spotify/download?apiKey=qasim-dev&url=${encodeURIComponent(spotifyUrl)}`;
+      const downloadResponse = await apiCallWithRetry(downloadUrl, 3, 3000);
+
+      if (!downloadResponse.data?.success || !downloadResponse.data?.data?.download) {
+        return await sock.sendMessage(chatId, {
+          text: "❌ *Download failed!*\nThe API couldn't fetch the audio. Try again later."
+        }, { quoted: message });
+      }
+
+      const songData = downloadResponse.data.data;
+      const audioUrl = songData.download;
+      const title = songData.title;
+      const artist = songData.artist;
+      const coverImage = songData.cover;
+      const durationMs = songData.duration;
+      
+      // Convert duration from milliseconds to mm:ss format
+      const minutes = Math.floor(durationMs / 60000);
+      const seconds = Math.floor((durationMs % 60000) / 1000);
+      const formattedDuration = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+      // Fetch cover image as buffer
+      let thumbnailBuffer = null;
+      if (coverImage) {
+        try {
+          await wait(1000); // Respect rate limits
+          const imgResponse = await axios.get(coverImage, { 
+            responseType: 'arraybuffer',
+            timeout: 30000 
+          });
+          thumbnailBuffer = Buffer.from(imgResponse.data);
+        } catch (imgError) {
+          console.error('Failed to fetch cover image:', imgError.message);
+        }
+      }
+
+      // Send audio file
+      await sock.sendMessage(chatId, {
+        audio: { url: audioUrl },
+        mimetype: "audio/mpeg",
+        fileName: `${title} - ${artist}.mp3`,
+        contextInfo: {
+          externalAdReply: {
+            title: title,
+            body: `${artist} • ${formattedDuration}`,
+            thumbnail: thumbnailBuffer,
+            mediaType: 2,
+            mediaUrl: spotifyUrl,
+            sourceUrl: spotifyUrl
+          }
+        }
+      }, { quoted: message });
+
 
     } catch (error) {
-        console.error('[DEX-BOT PLAY] Error:', error);
-        
-        await sock.sendMessage(chatId, { 
-            text: "🚫 *ERROR* 🚫\n\nError: " + (error.message || 'Unknown error') + "\n\nPlease try again."
-        }, { quoted: message });
-    }
-}
+      console.error('Play Command Error:', error);
+      
+      let errorMsg = "❌ *Download failed!*\n\n";
+      
+      if (error.code === 'ETIMEDOUT' || error.code === 'ECONNABORTED') {
+        errorMsg += "*Reason:* Connection timeout\nThe API took too long to respond.";
+      } else if (error.response?.status === 429) {
+        errorMsg += "*Reason:* Rate limit exceeded\nToo many requests. Please wait a minute and try again.";
+      } else if (error.response) {
+        errorMsg += `*Status:* ${error.response.status}\n*Error:* ${error.response.statusText}`;
+      } else {
+        errorMsg += `*Error:* ${error.message}`;
+      }
+      
+      errorMsg += "\n\n💡 *Tip:* Wait 10-15 seconds between requests to avoid rate limits.";
 
-module.exports = playCommand;
+      await sock.sendMessage(chatId, {
+        text: errorMsg
+      }, { quoted: message });
+    }
+  }
+};
