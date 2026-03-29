@@ -44,7 +44,7 @@ async function videoCommand(sock, chatId, message) {
 
         // Help message if no query
         if (!searchQuery) {
-            const helpText = `🎬 *ZENITSU-BOT VIDEO DOWNLOADER* 🎬
+            const helpText = `🎬 *Dex-Bot VIDEO DOWNLOADER* 🎬
 
 🔍 *USAGE:*
 • Send YouTube URL
@@ -133,7 +133,7 @@ async function videoCommand(sock, chatId, message) {
         });
 
         // Send video with caption
-        const caption = `🎬 *ZENITSU-BOT VIDEO DOWNLOADER* 🎬
+        const caption = `🎬 *Dex-Bot VIDEO DOWNLOADER* 🎬
 
 📽️ *Title:* ${finalTitle}
 ⚡ *Quality:* 720p
@@ -141,7 +141,7 @@ async function videoCommand(sock, chatId, message) {
 
 ✅ *Status:* Downloaded successfully
 
-⭐ *Powered by Zenitsu-BOT*
+⭐ *Powered by Dex Shyam Chaudhari*
 🎥 *Enjoy your video!*`;
 
         await sock.sendMessage(chatId, {
@@ -153,7 +153,7 @@ async function videoCommand(sock, chatId, message) {
 
         // Final edit to show completion status (keeping the message)
         await sock.sendMessage(chatId, {
-            text: `✅ *Downloaded successfully!*\n\n📽️ *Title:* ${finalTitle}\n⚡ *Quality:* 720p\n🎬 *Format:* MP4\n\n🎬 *Video sent! Check above.*\n\n⭐ *Zenitsu-BOT Task Complete* ⭐`,
+            text: `✅ *Downloaded successfully!*\n\n📽️ *Title:* ${finalTitle}\n⚡ *Quality:* 720p\n🎬 *Format:* MP4\n\n🎬 *Video sent! Check above.*\n\n⭐ *Dex-Bot Task Complete* ⭐`,
             edit: statusMsg.key
         });
 
