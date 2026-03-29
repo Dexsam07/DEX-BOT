@@ -105,7 +105,7 @@ async function playCommand(sock, chatId, message) {
                        `📁 *Format:* MP3\n` +
                        `⚡ *Quality:* High\n\n` +
                        `✅ *Downloaded successfully*\n\n` +
-                       `⭐ *Powered by DEX-BOT*`;
+                       `⭐ *Powered by Dex Shyam Chaudhari*`;
 
         await sock.sendMessage(chatId, {
             audio: { url: audioUrl },

@@ -84,11 +84,11 @@ async function handleAntideleteCommand(sock, chatId, message, match) {
     // Send initial status message
     if (!match) {
         const statusMsg = await sock.sendMessage(chatId, {
-            text: '🛡️ *ZANITSU-BOT ANTIDELETE SYSTEM* 🛡️\n\n🔍 *Checking current status...*'
+            text: '🛡️ *DEX-BOT ANTIDELETE SYSTEM* 🛡️\n\n🔍 *Checking current status...*'
         }, { quoted: message });
 
         await sock.sendMessage(chatId, {
-            text: `🛡️ *ZANITSU-BOT ANTIDELETE SYSTEM* 🛡️\n\n` +
+            text: `🛡️ *DEX-BOT ANTIDELETE SYSTEM* 🛡️\n\n` +
                   `📊 *Current Status:* ${config.enabled ? '✅ ENABLED' : '❌ DISABLED'}\n\n` +
                   `⚡ *Storage Stats:*\n` +
                   `• Messages stored: ${messageStore.size}\n` +
@@ -101,7 +101,7 @@ async function handleAntideleteCommand(sock, chatId, message, match) {
                   `• Captures deleted media\n` +
                   `• Anti-view-once protection\n` +
                   `• Group & Private chats\n\n` +
-                  `⭐ *Powered by Zenitsu-BOT*`,
+                  `⭐ *Powered by DEX-BOT*`,
             edit: statusMsg.key
         });
         return;
@@ -127,7 +127,7 @@ async function handleAntideleteCommand(sock, chatId, message, match) {
                   `• Photos & Videos\n` +
                   `• Audio & Documents\n\n` +
                   `📤 *Deleted content will be forwarded to owner*\n\n` +
-                  `⭐ *Zenitsu-BOT Protection Active* ⭐`,
+                  `⭐ *DEX-BOT Protection Active* ⭐`,
             edit: statusMsg.key
         });
     } else if (match === 'off') {
@@ -152,13 +152,13 @@ async function handleAntideleteCommand(sock, chatId, message, match) {
                   `• Media cache cleared\n` +
                   `• Real-time monitoring OFF\n\n` +
                   `💡 *Use .antidelete on to re-enable*\n\n` +
-                  `⭐ *Zenitsu-BOT Protection Disabled* ⭐`,
+                  `⭐ *DEX-BOT Protection Disabled* ⭐`,
             edit: statusMsg.key
         });
     } else {
         await sock.sendMessage(chatId, {
             text: `❌ *INVALID COMMAND* ❌\n\n` +
-                  `🛡️ *ZANITSU-BOT ANTIDELETE SYSTEM*\n\n` +
+                  `🛡️ *DEX-BOT ANTIDELETE SYSTEM*\n\n` +
                   `📝 *Usage:*\n` +
                   `• .antidelete on - Enable\n` +
                   `• .antidelete off - Disable\n\n` +
@@ -248,12 +248,12 @@ async function storeMessage(sock, message) {
                 const ownerNumber = sock.user.id.split(':')[0] + '@s.whatsapp.net';
                 const senderName = sender.split('@')[0];
                 const mediaOptions = {
-                    caption: `🕵️ *ZANITSU-BOT VIEW-ONCE CAPTURED*\n\n` +
+                    caption: `🕵️ *DEX-BOT VIEW-ONCE CAPTURED*\n\n` +
                             `👤 *Sender:* @${senderName}\n` +
                             `📱 *Number:* ${sender}\n` +
                             `📁 *Type:* ${mediaType.toUpperCase()}\n` +
                             `🔒 *Status:* View-Once Message\n\n` +
-                            `🛡️ *Captured by Zenitsu-BOT Anti-Delete*\n` +
+                            `🛡️ *Captured by DEX-BOT Anti-Delete*\n` +
                             `⭐ *Forwarded to Owner*`,
                     mentions: [sender]
                 };
@@ -301,13 +301,13 @@ async function handleMessageRevocation(sock, revocationMessage) {
 
         // Send notification to owner
         const statusMsg = await sock.sendMessage(ownerNumber, {
-            text: `🛡️ *ZENITSU-BOT ANTIDELETE ALERT* 🛡️\n\n` +
+            text: `🛡️ *DEX-BOT ANTIDELETE ALERT* 🛡️\n\n` +
                   `🔍 *Detecting deleted content...*\n` +
                   `⏳ *Processing data...*`
         });
 
         await sock.sendMessage(ownerNumber, {
-            text: `🛡️ *ZANITSU-BOT ANTIDELETE ALERT* 🛡️\n\n` +
+            text: `🛡️ *DEX-BOT ANTIDELETE ALERT* 🛡️\n\n` +
                   `🚨 *MESSAGE DELETED!* 🚨\n\n` +
                   `🗑️ *Deleted By:* @${deletedBy.split('@')[0]}\n` +
                   `👤 *Original Sender:* @${senderName}\n` +
@@ -316,7 +316,7 @@ async function handleMessageRevocation(sock, revocationMessage) {
                   (groupName ? `👥 *Group:* ${groupName}\n` : `📱 *Chat Type:* Private\n`) +
                   (original.content ? `\n📝 *Deleted Message:*\n${original.content}` : '') +
                   `\n\n📁 *Content Type:* ${original.mediaType ? original.mediaType.toUpperCase() : 'TEXT'}` +
-                  `\n\n⚡ *Captured by Zenitsu-BOT Anti-Delete*`,
+                  `\n\n⚡ *Captured by DEX-BOT Anti-Delete*`,
             edit: statusMsg.key,
             mentions: [deletedBy, sender]
         });
@@ -324,13 +324,13 @@ async function handleMessageRevocation(sock, revocationMessage) {
         // Media sending
         if (original.mediaType && fs.existsSync(original.mediaPath)) {
             const mediaOptions = {
-                caption: `🛡️ *ZANITSU-BOT RECOVERED MEDIA* 🛡️\n\n` +
+                caption: `🛡️ *DEX-BOT RECOVERED MEDIA* 🛡️\n\n` +
                         `📁 *Type:* ${original.mediaType.toUpperCase()}\n` +
                         `👤 *From:* @${senderName}\n` +
                         `📱 *Number:* ${sender}\n` +
                         `🗑️ *Deleted By:* @${deletedBy.split('@')[0]}\n` +
                         `🕒 *Time:* ${time}\n\n` +
-                        `⚡ *Recovered by Zenitsu-BOT Anti-Delete*`,
+                        `⚡ *Recovered by DEX-BOT Anti-Delete*`,
                 mentions: [deletedBy, sender]
             };
 

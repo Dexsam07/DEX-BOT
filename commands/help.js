@@ -35,23 +35,23 @@ async function helpCommand(sock, chatId, message) {
 
         // Send initial message
         const statusMsg = await sock.sendMessage(chatId, {
-            text: "🔍 *ZENITSU-BOT* · *Loading...*\n⏳ *Please wait...*"
+            text: "🔍 *DEX-BOT* · *Loading...*\n⏳ *Please wait...*"
         }, { quoted: message });
 
         // Prepare the stylish menu
         const menuText = `
 ╔═══════════════════════╗
-        ⚡ *Zanitsu Bot* ⚡
+        ⚡ *DEX BOT* ⚡
      Status · Contact · Menu
 ╚═══════════════════════╝
 
 📅 *${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}*
 
-🤖 *ZENITSU-BOT*
-Version ${settings.version || '1.0.0'} · Active
+🤖 *DEX-BOT*
+Version ${settings.version || '1.2.3'} · Active
 
 🔧 *SYSTEM INFO*
-[ ] [ Z E N I T S U -  B O T ]
+[ ] [ D E X -  B O T ]
 ► Prefix: [ ${settings.prefix || '.'} ]
 ► Owner: ${settings.botOwner || 'Not set!'}
 ► Mode: ${settings.privateMode ? 'private' : 'public'}
@@ -260,11 +260,11 @@ Version ${settings.version || '1.0.0'} · Active
 ✅ Online · ⚡ Active · 🛡️ Secured
 💾 ${usedMB}MB/${totalMB}MB · 📈 ${memPercent}%
 
-⭐ *Powered by ZENITSU-BOT*`;
+⭐ *Powered by DEX-BOT*`;
 
         // Update with menu ready
         await sock.sendMessage(chatId, {
-            text: "✅ *ZENITSU-BOT* · *Menu Ready*\n📤 *Sending now...*",
+            text: "✅ *DEX-BOT* · *Menu Ready*\n📤 *Sending now...*",
             edit: statusMsg.key
         });
 
@@ -273,8 +273,8 @@ Version ${settings.version || '1.0.0'} · Active
             forwardingScore: 1,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363406588763460@newsletter',
-                newsletterName: 'Zanitsu Bot',
+                newsletterJid: '120363406449026172@newsletter',
+                newsletterName: 'DEX SHYAM TECH',
                 serverMessageId: -1
             }
         };
@@ -307,7 +307,7 @@ Version ${settings.version || '1.0.0'} · Active
         }
 
     } catch (error) {
-        console.error('[ZENITSU-BOT MENU] Error:', error);
+        console.error('[DEX-BOT MENU] Error:', error);
         
         // Send error fallback with forwarding
         await sock.sendMessage(chatId, {
@@ -316,8 +316,8 @@ Version ${settings.version || '1.0.0'} · Active
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363406588763460@newsletter',
-                    newsletterName: 'Zanitsu Bot',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'Dex Shyam Tech',
                     serverMessageId: -1
                 }
             }

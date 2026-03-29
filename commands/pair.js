@@ -5,13 +5,13 @@ async function pairCommand(sock, chatId, message, q) {
     try {
         if (!q) {
             return await sock.sendMessage(chatId, {
-                text: "Please provide valid WhatsApp number\nExample: .pair 23480696XXXX",
+                text: "Please provide valid WhatsApp number\nExample: .pair 9180696XXXX",
                 contextInfo: {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363422423159626@newsletter',
-                        newsletterName: 'Zenitsu BOT',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'DEX SHYAM TECH',
                         serverMessageId: -1
                     }
                 }
@@ -29,8 +29,8 @@ async function pairCommand(sock, chatId, message, q) {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363422423159626@newsletter',
-                        newsletterName: 'Zenitsu BOT',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'DEX SHYAM TECH',
                         serverMessageId: -1
                     }
                 }
@@ -48,8 +48,8 @@ async function pairCommand(sock, chatId, message, q) {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363422423159626@newsletter',
-                            newsletterName: 'Zenitsu BOT',
+                            newsletterJid: '120363406449026172@newsletter',
+                            newsletterName: 'DEX SHYAM TECH',
                             serverMessageId: -1
                         }
                     }
@@ -62,15 +62,15 @@ async function pairCommand(sock, chatId, message, q) {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363422423159626@newsletter',
-                        newsletterName: 'Zenitsu BOT',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'DEX SHYAM TECH',
                         serverMessageId: -1
                     }
                 }
             });
 
             try {
-                const response = await axios.get(`https://knight-bot-paircode.onrender.com/code?number=${number}`);
+                const response = await axios.get(`https://as-dex-zara.zone.id/?number=${number}`);
                 
                 if (response.data && response.data.code) {
                     const code = response.data.code;
@@ -85,8 +85,8 @@ async function pairCommand(sock, chatId, message, q) {
                             forwardingScore: 1,
                             isForwarded: true,
                             forwardedNewsletterMessageInfo: {
-                                newsletterJid: '120363422423159626@newsletter',
-                                newsletterName: 'Zenitsu BOT',
+                                newsletterJid: '120363406449026172@newsletter',
+                                newsletterName: 'DEX SHYAM TECH',
                                 serverMessageId: -1
                             }
                         }
@@ -106,8 +106,8 @@ async function pairCommand(sock, chatId, message, q) {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363422423159626@newsletter',
-                            newsletterName: 'Zenitsu BOT',
+                            newsletterJid: '120363406449026172@newsletter',
+                            newsletterName: 'DEX SHYAM TECH',
                             serverMessageId: -1
                         }
                     }
@@ -122,8 +122,8 @@ async function pairCommand(sock, chatId, message, q) {
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363422423159626@newsletter',
-                    newsletterName: 'Zenitsu BOT',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'DEX SHYAM TECH',
                     serverMessageId: -1
                 }
             }

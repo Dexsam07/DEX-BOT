@@ -1,5 +1,5 @@
 /**
- * Knight Bot - A WhatsApp Bot
+ * DEX Bot - A WhatsApp Bot
  * Autoread Command - Automatically read all messages
  */
 
@@ -28,8 +28,8 @@ async function autoreadCommand(sock, chatId, message) {
                     forwardingScore: 1,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363406735242612@newsletter',
-                        newsletterName: 'Zenitsu BOT',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'DEX SHYAM TECH',
                         serverMessageId: -1
                     }
                 }
@@ -59,8 +59,8 @@ async function autoreadCommand(sock, chatId, message) {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363406735242612@newsletter',
-                            newsletterName: 'Zenitsu BOT',
+                            newsletterJid: '120363406449026172@newsletter',
+                            newsletterName: 'DEX SHYAM TECH',
                             serverMessageId: -1
                         }
                     }
@@ -82,8 +82,8 @@ async function autoreadCommand(sock, chatId, message) {
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363406735242612@newsletter',
-                    newsletterName: 'Zenitsu BOT',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'DEX SHYAM TECH',
                     serverMessageId: -1
                 }
             }
@@ -97,8 +97,8 @@ async function autoreadCommand(sock, chatId, message) {
                 forwardingScore: 1,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363406735242612@newsletter',
-                    newsletterName: 'Zenitsu BOT',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'DEX SHYAM TECH',
                     serverMessageId: -1
                 }
             }
@@ -152,7 +152,7 @@ function isBotMentionedInMessage(message, botNumber) {
         }
         
         // Check for bot name mentions (optional, can be customized)
-        const botNames = [global.botname?.toLowerCase(), 'bot', 'zenitsu', 'zenitsu bot'];
+        const botNames = [global.botname?.toLowerCase(), 'bot', 'zenitsu', 'DEX SHYAM TECH'];
         const words = textContent.toLowerCase().split(/\s+/);
         if (botNames.some(name => words.includes(name))) {
             return true;

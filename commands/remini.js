@@ -75,7 +75,7 @@ async function reminiCommand(sock, chatId, message, args) {
                     // Send the enhanced image
                     await sock.sendMessage(chatId, {
                         image: imageResponse.data,
-                        caption: '✨ *Image enhanced successfully!*\n\nENHANCED BY ZENITSU-BOT'
+                        caption: '✨ *Image enhanced successfully!*\n\nENHANCED BY DEX-BOT'
                     }, { quoted: message });
                 } else {
                     throw new Error('Failed to download enhanced image');

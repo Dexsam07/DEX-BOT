@@ -36,8 +36,8 @@ async function stickerCommand(sock, chatId, message) {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363422423159626@newsletter',
-                    newsletterName: 'ZenitsuBot MD',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'DEX SHYAM TECH',
                     serverMessageId: -1
                 }
             }
@@ -58,8 +58,8 @@ async function stickerCommand(sock, chatId, message) {
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363422423159626@newsletter',
-                        newsletterName: 'ZenitsuBot MD',
+                        newsletterJid: '120363406449026172@newsletter',
+                        newsletterName: 'DEX SHYAM TECH',
                         serverMessageId: -1
                     }
                 }
@@ -216,8 +216,8 @@ async function stickerCommand(sock, chatId, message) {
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363422423159626@newsletter',
-                    newsletterName: 'ZenitsuBot MD',
+                    newsletterJid: '120363406449026172@newsletter',
+                    newsletterName: 'DEX SHYAM TECH',
                     serverMessageId: -1
                 }
             }

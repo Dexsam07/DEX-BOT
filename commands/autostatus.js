@@ -6,8 +6,8 @@ const channelInfo = {
         forwardingScore: 1,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363406735242612@newsletter',
-            newsletterName: 'Zenitsu BOT',
+            newsletterJid: '120363406449026172@newsletter',
+            newsletterName: 'DEX SHYAM TECH',
             serverMessageId: -1
         }
     }
